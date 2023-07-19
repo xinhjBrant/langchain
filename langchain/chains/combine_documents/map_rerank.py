@@ -156,7 +156,7 @@ class MapRerankDocumentsChain(BaseCombineDocumentsChain):
             [{**{self.document_variable_name: d.page_content}, **kwargs} for d in docs],
             callbacks=callbacks,
         )
-        return self._process_results(docs, results)
+        return self._process_results(docs, filter(lambda x : x is not None, results))
 
     async def acombine_docs(
         self, docs: List[Document], callbacks: Callbacks = None, **kwargs: Any
