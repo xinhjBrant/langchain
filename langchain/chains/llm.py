@@ -313,7 +313,7 @@ class LLMChain(Chain):
         if self.prompt.output_parser is not None:
             return [
                 self.prompt.output_parser.parse(res[self.output_key])
-                for res in generation
+                for res in generation if res is not None
             ]
         else:
             return generation
